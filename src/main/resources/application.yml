@@ -1,0 +1,24 @@
+coinapi:
+  url: https://rest.coinapi.io
+  apiKey: E4E65F85-22EF-413A-BEDD-A67F7D5BD285
+  list_all_periods: /v1/ohlcv/periods
+  latest_data: /v1/ohlcv/{symbol_id}/latest
+  historical_data: /v1/ohlcv/{symbol_id}/history
+  symbols: /v1/symbols
+  asset_icons: /v1/assets/icons/{iconSize}
+  assets: /v1/assets
+  exchange_rate: /v1/exchangerate/{asset_id_base}/{asset_id_quote}/history
+  
+  
+spring:
+  devtools:
+    restart:
+      log-condition-evaluation-delta: false
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+      
+logging:
+  level:
+    root: "debug"
