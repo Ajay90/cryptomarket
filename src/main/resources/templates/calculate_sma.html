@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Simple Moving Average</title>
+		<style type="text/css">
+			span{
+				display: inline-block;
+				width: 200px;
+				text-align: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div align="center">
+			<h2>SMA Result</h2>
+			<span>Period:</span><span th:text="${simpleMovingAverageInputs.period_id}"></span><br/>
+			<span>Limit:</span><span th:text="${simpleMovingAverageInputs.limit}"></span><br/>
+			<span>Base:</span><span th:text="${simpleMovingAverageInputs.asset_id_base}"></span><br/>
+			<span>Quote:</span><span th:text="${simpleMovingAverageInputs.asset_id_quote}"></span><br/>
+		</div>
+	</body>
+</html>
