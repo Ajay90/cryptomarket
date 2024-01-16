@@ -22,21 +22,21 @@ import com.cryptomarket.fintools.model.HistoryData;
  *
  */
 @Service
-public class ExchangeRates {
+public class OHLCVHistoricData {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExchangeRates.class);
 	private final RestTemplate restTemplate = new RestTemplate();
 	private final CoinAPIConfiguration coinAPIConfiguration;
 	private final HeaderHttpEntityServiceCoinAPI headerHttpEntityServiceCoinAPI;
 
-	public ExchangeRates(CoinAPIConfiguration coinAPIConfiguration,
+	public OHLCVHistoricData(CoinAPIConfiguration coinAPIConfiguration,
 			HeaderHttpEntityServiceCoinAPI headerHttpEntityServiceCoinAPI) {
 		super();
 		this.coinAPIConfiguration = coinAPIConfiguration;
 		this.headerHttpEntityServiceCoinAPI = headerHttpEntityServiceCoinAPI;
 	}
 
-	public HistoryData[] exchangeRate(String apiKey, String asset_id_base, String asset_id_quote, String periodID,
-			String limit) {
+	public HistoryData[] symbolIdHistoryData(String apiKey, String asset_id_base, String asset_id_quote,
+			String periodID, String limit, String symbolID) {
 		ResponseEntity<HistoryData[]> responseEntity = null;
 		try {
 
@@ -49,7 +49,7 @@ public class ExchangeRates {
 					&& periodID != null && !periodID.isBlank()) {
 				uri = UriComponentsBuilder.fromUriString(coinAPIConfiguration.getUrl())
 						.path(coinAPIConfiguration.getHistorical_data()).queryParams(linkedMultiValueMap)
-						.buildAndExpand(asset_id_base, asset_id_quote).toUri();
+						.buildAndExpand(symbolID).toUri();
 			}
 			HttpEntity<?> httpEntity = headerHttpEntityServiceCoinAPI.createHttpEntity(apiKey);
 			responseEntity = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, HistoryData[].class);

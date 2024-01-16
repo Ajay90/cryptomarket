@@ -12,4 +12,5 @@ public class SimpleMovingAverageInputs {
 	private int limit;
 	private String asset_id_base;
 	private String asset_id_quote;
+	private String symbol_id;
 }

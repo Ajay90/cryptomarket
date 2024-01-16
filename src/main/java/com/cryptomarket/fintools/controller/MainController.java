@@ -33,8 +33,16 @@ public class MainController {
 
 	@PostMapping("/smaresult")
 	public String submitForm(
-			@ModelAttribute("simpleMovingAverageInputs") SimpleMovingAverageInputs simpleMovingAverageInputs) {
-		System.out.println(simpleMovingAverageInputs);
+			@ModelAttribute("simpleMovingAverageInputs") SimpleMovingAverageInputs simpleMovingAverageInputs,
+			Model model) {
+		SimpleMovingAverageResponse simpleMovingAverageResponse = new SimpleMovingAverageResponse();
+		simpleMovingAverageResponse.setResult(simpleMovingAverage.calculdateSimpleMovingAverageByOHLCV(
+				coinAPIConfiguration.getApiKey(), simpleMovingAverageInputs.getAsset_id_base(),
+				simpleMovingAverageInputs.getAsset_id_quote(), simpleMovingAverageInputs.getPeriod_id(),
+				String.valueOf(simpleMovingAverageInputs.getLimit()), simpleMovingAverageInputs.getSymbol_id()));
+
+		model.addAttribute("simpleMovingAverageResponse", simpleMovingAverageResponse);
+		System.out.println(simpleMovingAverageResponse);
 		return "calculate_sma";
 	}
 
@@ -45,7 +53,7 @@ public class MainController {
 		System.out.println(simpleMovingAverageInputs);
 
 		SimpleMovingAverageResponse simpleMovingAverageResponse = new SimpleMovingAverageResponse();
-		simpleMovingAverageResponse.setResult(simpleMovingAverage.calculdateSimpleMovingAverage(
+		simpleMovingAverageResponse.setResult(simpleMovingAverage.calculdateSimpleMovingAverageByExchangeRate(
 				coinAPIConfiguration.getApiKey(), simpleMovingAverageInputs.getAsset_id_base(),
 				simpleMovingAverageInputs.getAsset_id_quote(), simpleMovingAverageInputs.getPeriod_id(),
 				String.valueOf(simpleMovingAverageInputs.getLimit())));

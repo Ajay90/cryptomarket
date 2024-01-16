@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cryptomarket.fintools.model.ExchangeRateResponse;
+import com.cryptomarket.fintools.model.HistoryData;
 import com.cryptomarket.fintools.service.ExchangeRates;
 
 /**
@@ -26,7 +26,7 @@ public class ExchangeRatesController {
 	}
 
 	@GetMapping("/v1/exchangerate/{asset_id_base}/{asset_id_quote}/history")
-	public ExchangeRateResponse[] exchangeRate(@RequestHeader String apiKey, @PathVariable String asset_id_base,
+	public HistoryData[] exchangeRate(@RequestHeader String apiKey, @PathVariable String asset_id_base,
 			@PathVariable String asset_id_quote, @RequestParam("period_id") String period_id,
 			@RequestParam("limit") String limit) {
 		return exchangeRates.exchangeRate(apiKey, asset_id_base, asset_id_quote, period_id, limit);

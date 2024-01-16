@@ -29,7 +29,7 @@
 <body>
 	<div align="center">
 		<h1>Simple Moving Average</h1>
-		<form action="#" th:action="@{/smaresult2}" method="post" th:object="${simpleMovingAverageInputs}">
+		<form action="#" th:action="@{/smaresult}" method="post" th:object="${simpleMovingAverageInputs}">
 			<label>Period ID:</label>
 			<input type="text" th:field="*{period_id}" /><br/>
 			
@@ -41,6 +41,9 @@
 			
 			<label>Quote:</label>
 			<input type="text" th:field="*{asset_id_quote}" /><br/>
+			
+			<label>Symbol ID:</label>
+			<input type="text" th:field="*{symbol_id}" /><br/>
 			
 			<button type="submit">Calculate SMA</button>
 		</form>

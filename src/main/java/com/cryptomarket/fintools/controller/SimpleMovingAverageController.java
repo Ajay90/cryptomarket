@@ -26,9 +26,9 @@ public class SimpleMovingAverageController {
 	@GetMapping("/simpleMovingAverage")
 	public double simpleMovingAverage(@RequestHeader String apiKey, @RequestParam("asset_id_base") String asset_id_base,
 			@RequestParam String asset_id_quote, @RequestParam("period_id") String period_id,
-			@RequestParam("limit") String limit) {
-		return simpleMovingAverage.calculdateSimpleMovingAverage(apiKey, asset_id_base, asset_id_quote, period_id,
-				limit);
+			@RequestParam("limit") String limit, @RequestParam("symbol_id") String symbol_id) {
+		return simpleMovingAverage.calculdateSimpleMovingAverageByOHLCV(apiKey, asset_id_base, asset_id_quote,
+				period_id, limit, symbol_id);
 	}
 
 }
